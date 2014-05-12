@@ -1,6 +1,0 @@
-Known Bugs:
-
-- After replaying multiple times, the animation becomes faster.
-- Doesn't currently work if there are more than 3 channels for all joints other than the root.
-- Might want to link up scaling to sliders.
-- The grid doesn't change orientation when you change the up vector --> might make the interface more usable and friendly.
