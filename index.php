@@ -1,8 +1,6 @@
-
 <!DOCTYPE HTML> 
 <html lang="en"> 
 	<head> 
-
 		<title>WebGL BVH Player</title> 
 		<meta charset="utf-8"> 
 		<style type="text/css"> 
@@ -147,16 +145,23 @@
 	<body> 
     	
 
-    <?php 
-	ini_set('memory_limit', '400M');
-	$dafile = $_GET['id'];
-	//$dafile = "C:\\wamp\\www\\BVH_View\\Cartwheel.bvh";
-	//$variable1 = file_get_contents($dafile); 
-	$variable1 = file_get_contents($dafile);
+<?php 
+ini_set('memory_limit', '400M');
+$dafile = $_GET['id'];
 
-  	$hmm =  preg_split("/[\s]+/", $variable1);
-	
-	?> 
+$all_bvh_files = scandir('./samples/');
+function checkDir($f) { return !is_dir($f); }
+$all_bvh_files = array_filter($all_bvh_files, checkDir);
+
+if (in_array($dafile, $all_bvh_files, true)) {
+	$variable1 = file_get_contents('./samples/'.$dafile);
+} else {
+	$variable1 = "";
+}
+
+$hmm =  preg_split("/[\s]+/", $variable1);
+
+?> 
  		<h1>WebGL BVH Viewer</h1>
  		<div id="wrapper">
  			<div id="block">
@@ -206,10 +211,6 @@
 		        	<button  class="customButton scale" onclick='scaleWorld(1.3,1.3,1.3)'>Scale World Up</button>
 		        	<button  class="customButton scale" onclick='scaleWorld(0.7,0.7,0.7)'>Scale World Down</button>
 		        </p>
-		        <!--<p>
-		        	<button class="customButton scale" onlick='hideControls()'>Hide Instructions</button>
-		        </p>-->
-	        	<!--<input id="scaleSlider" type="text" data-slider="true">Scale</input>-->
 	        </div> 
 	    </div>
 	    <footer>
@@ -223,11 +224,8 @@
 		<script type="text/javascript" src="RequestAnimationFrame.js"></script> 
 		<script type ="text/javascript" src="TrackballCamera.js"></script>
 		<script type ="text/javascript" src="TrackballControls.js"></script>
-        <script type ="text/javascript" src="Stats.js"></script>
+    <script type ="text/javascript" src="Stats.js"></script>
  		<script type ="text/javascript" src="jquery-1.9.1.min.js"></script>
- 		<!--<script src="simple-slider.js"></script>-->
-		<!--<link href="simple-slider.css" rel="stylesheet" type="text/css" />-->
-		<!--<script type="text/javascript" src="parseBVH.js"></script>-->
 		<script type="text/javascript"> 
 			/*If you have any questions about the program,
 			you can email me at tanirganemre at gmail dot com*/
