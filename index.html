@@ -58,27 +58,24 @@
 	        </div> 
 	    </div>
 	    <footer>
-	    	2013 - Created by Emre Tanirgan and Kelsey Hurley. View source code <a href="https://github.com/emretanirgan/BVH_Viewer">here</a>.
+	    	2014 - Fork, fixes &amp; updates by <a href="https://github.com/iamwolf/BVHplayer.js">Wolf Merkt</a><br>
+	    	2013 - Originally created by <a href="https://github.com/emretanirgan/BVH_Viewer">Emre Tanirgan and Kelsey Hurley</a>.
 	    </footer>
- 
-        
-        
+   
 		
-		<script type="text/javascript" src="Three.js"></script> 
-		<script type="text/javascript" src="RequestAnimationFrame.js"></script> 
-		<script type ="text/javascript" src="TrackballCamera.js"></script>
-		<script type ="text/javascript" src="TrackballControls.js"></script>
-    <script type ="text/javascript" src="Stats.js"></script>
- 		<script type ="text/javascript" src="jquery-1.9.1.min.js"></script>
- 		
-
- 		 		
-		<script type="text/javascript" src="BVHPlayer.js"></script>
+		<script src="Three.js"></script> 
+		<script src="RequestAnimationFrame.js"></script> 
+		<script src="TrackballCamera.js"></script>
+		<script src="TrackballControls.js"></script>
+		<script src="Stats.js"></script>
+ 		<script src="jquery-1.9.1.min.js"></script>
+ 		 		 		
+		<script src="BVHPlayer.js"></script>
 		
-		 <script>
+		<script>
  		var hmm = [];
 		$(document).ready(function() {
-			$.get( "samples/left_hand_motion.bvh", function( data ) {	
+			$.get( "samples/Destroy.bvh", function( data ) {	
 				hmm = data.split(/[\s]+/g);
 				initBVHPlayer();
 			});
