@@ -1,5 +1,6 @@
 // DEBUG MODE? 
 var DEBUG = false;
+var STATS = false;
 
 //variables
 var traceOn = true;
@@ -241,7 +242,6 @@ function App(containerId, fullWidth, fullHeight, viewX, viewY, viewWidth, viewHe
 					
 				}
 				else if(token == 'CHANNELS'){
-					
 					jointChannels.push(tester[i+1]*1); 
 				}
 				else if(token == 'JOINT'){
@@ -260,15 +260,11 @@ function App(containerId, fullWidth, fullHeight, viewX, viewY, viewWidth, viewHe
 		}
 	}
 	
-	
-	
 	initialize();
 	animate();
 	//sets up the scene.
 	function initialize() {
-
-		//here we are setting a container to put the webgl scene in. You initalize paramters in 
-		//css at the top and then place the scene into that container here.
+		//here we are setting a container to put the webgl scene in. You initalize paramters in css at the top and then place the scene into that container here.
 		
 		var container = document.getElementById(containerId);
 
@@ -368,12 +364,13 @@ function App(containerId, fullWidth, fullHeight, viewX, viewY, viewWidth, viewHe
 		
 		
 		scene.add(groundplane);
-		 		 
-		stats = new Stats();
-		stats.domElement.style.position = 'absolute';
-		stats.domElement.style.top = '0px';
-
-		container.appendChild( stats.domElement );				
+		
+		if (STATS) { 		 
+			stats = new Stats();
+			stats.domElement.style.position = 'absolute';
+			stats.domElement.style.top = '0px';
+			container.appendChild( stats.domElement );				
+		}
 	}
 	
 	//this is so we know how many numbers there will be for each frame.
@@ -778,7 +775,7 @@ function animate() {
 
 				var maxlen = Math.max(xlen,ylen, zlen);
 				if (maxlen == xlen){
-					console.log("X");
+					if (DEBUG) console.log("X");
 					if(boundingbox.max.x < 0){
 						setUpVector(1,0,0);
 					}
@@ -788,7 +785,7 @@ function animate() {
 					groundplane.rotation.z = 90 * Math.PI / 180;
 				}
 				else if (maxlen == ylen){
-					console.log("Y");
+					if (DEBUG) console.log("Y");
 					if(boundingbox.max.y < 0){
 						setUpVector(0,-1,0);
 					}
@@ -797,7 +794,7 @@ function animate() {
 					}
 				}
 				else if (maxlen == zlen){
-					console.log("Z");
+					if (DEBUG) console.log("Z");
 					if(boundingbox.max.z > 0){
 						setUpVector(0,0,1);
 					}
@@ -806,7 +803,7 @@ function animate() {
 					}
 					groundplane.rotation.x = 90 * Math.PI / 180;
 				}
-				console.log(Math.max(xlen,ylen,zlen));
+				if (DEBUG) console.log("x, y, or z MAX ", Math.max(xlen,ylen,zlen));
 				fixCameraView();
 
 			}
@@ -870,5 +867,5 @@ function fixCameraView(){
 function render() 
 {	
 		renderer.render(scene, camera);
-		stats.update();
+		if (STATS) stats.update();
 }
